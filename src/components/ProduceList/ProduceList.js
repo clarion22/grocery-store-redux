@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { populateProduce } from '../../store/produce';
 
+
 function ProduceList() {
   const produce = useSelector(state => state.produce);
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function ProduceList() {
 
   useEffect(() => {
     dispatch(populateProduce());
-  },[dispatch])
+  }, [dispatch])
   return (
     <>
       <h2>All produce</h2>

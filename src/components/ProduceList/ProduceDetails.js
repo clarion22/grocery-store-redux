@@ -5,7 +5,10 @@ function ProduceDetails({ produce }) {
   const dispatch = useDispatch();
   const cartItem = {};
 
-
+  const addItem = (e) => {
+    e.preventDefault();
+    dispatch(addToCart(produce.id));
+  };
 
   return (
     <li className="produce-details">
@@ -17,7 +20,7 @@ function ProduceDetails({ produce }) {
           <i className={"fas fa-heart"} />
         </button>
         <button
-          onClick={() => { dispatch(addToCart(produce.id)) }}
+          onClick={addItem}
           className={"plus-button" + (cartItem ? " selected" : "")}
         >
           <i className="fas fa-plus" />

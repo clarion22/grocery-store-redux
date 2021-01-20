@@ -10,6 +10,16 @@ function CartItem({ item }) {
     setCount(item.count);
   }, [item.count]);
 
+  const addItem = (e) => {
+    e.preventDefault();
+    setCount(count + 1);
+  }
+  const decreaseItem = (e) => {
+    e.preventDefault();
+    if (count === 1) removeItem(e)
+    setCount(count - 1);
+  }
+
   const removeItem = (e) => {
     e.preventDefault();
     dispatch(removeFromCart(item.id));
@@ -23,15 +33,17 @@ function CartItem({ item }) {
       <div className="cart-item-menu">
         <input
           type="number"
-        // value={count} 
+          value={count}
         />
         <button
           className="cart-item-button"
+          onClick={addItem}
         >
           +
         </button>
         <button
           className="cart-item-button"
+          onClick={decreaseItem}
         >
           -
         </button>

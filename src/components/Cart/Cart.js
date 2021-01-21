@@ -1,10 +1,12 @@
 import CartItem from './CartItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkoutCart } from '../../store/cart';
 import './Cart.css';
 
 function Cart() {
   const cart = useSelector(state => state.cart);
   const produce = useSelector(state => state.produce);
+  const dispatch = useDispatch();
 
   const cartItems = Object.values(cart)
     .map(item => {
@@ -28,6 +30,10 @@ function Cart() {
     );
   }
 
+  const onCheckout = (e) => {
+    e.preventDefault();
+    dispatch(checkoutCart());
+  }
   return (
     <div className="cart">
       <ul>
@@ -35,7 +41,7 @@ function Cart() {
       </ul>
       <hr />
       <form onSubmit={onSubmit}>
-        <button type="submit">Purchase</button>
+        <button type="submit" onClick={onCheckout}>Purchase</button>
       </form>
     </div>
   )
